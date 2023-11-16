@@ -1,6 +1,10 @@
 namespace Notifications.Infrastructure.Domain.Common.Exeptions;
 
-public class FuncResult
+public class FuncResult<T>
 {
-    
+    public T Data { get; set; }
+    public Exception? Exception { get; set; }
+    public bool IsSuccess => Exception is null;
+    public FuncResult(T data) => Data = data;
+    public FuncResult(Exception exception) => Exception = exception;
 }

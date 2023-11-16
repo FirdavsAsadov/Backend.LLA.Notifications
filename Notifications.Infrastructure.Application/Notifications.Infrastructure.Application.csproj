@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Notifications.Infrastructure.Domain\Notifications.Infrastructure.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Identity\Services\" />
+    <Folder Include="Common\Notifications\Services\" />
+    <Folder Include="Common\Querying\" />
+  </ItemGroup>
+
 </Project>

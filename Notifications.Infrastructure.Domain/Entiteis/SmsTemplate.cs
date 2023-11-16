@@ -1,6 +1,9 @@
 namespace Notifications.Infrastructure.Domain.Entiteis;
-
-public class SmsTemplate
+using Type = Notifications.Infrastructure.Domain.Enums.NotificationType;
+public class SmsTemplate : NotificationTemplate
 {
-    
+    public SmsTemplate()
+    {
+        Type = Type.Sms;
+    }
 }

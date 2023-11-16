@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Notifications.Infrastructure.Application\Notifications.Infrastructure.Application.csproj" />
+    <ProjectReference Include="..\Notifications.Infrastructure.Persistence\Notifications.Infrastructure.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
