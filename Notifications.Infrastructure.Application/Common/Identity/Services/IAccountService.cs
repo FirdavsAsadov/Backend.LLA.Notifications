@@ -1,6 +1,9 @@
+using Notifications.Infrastructure.Domain.Entiteis;
+
 namespace Notifications.Infrastructure.Application.Common.Identity.Services;
 
-public class IAccountService
+public interface IAccountService
 {
+    ValueTask<User> CreateUserAsync(User user);
     
 }

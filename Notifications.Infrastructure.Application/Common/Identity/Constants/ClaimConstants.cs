@@ -1,6 +1,7 @@
 namespace Notifications.Infrastructure.Application.Common.Identity.Constants;
 
-public class ClaimConstants
+public static class ClaimConstants
 {
-    
+    public const string UserId = "UserId";
+    public const string EmailAddress = "EmailAddress";
 }

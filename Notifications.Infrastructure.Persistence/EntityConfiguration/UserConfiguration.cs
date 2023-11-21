@@ -7,7 +7,8 @@ namespace Notifications.Infrastructure.Persistence.EntityConfiguration
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
-        { 
+        {
+            builder.HasOne(user => user.Role).WithMany().HasForeignKey(user => user.RoleId);
         }
     }
 }

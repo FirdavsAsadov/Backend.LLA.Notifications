@@ -6,12 +6,14 @@ namespace Notifications.Infrastructure.Domain.Entiteis;
 public class User : IEntity
 {
     public Guid Id { get; set; }
-    public string UserName { get; set; } = default!;
+    public string FirstName { get; set; } = default!;
+    public string LastName { get; set; } = default!;
     public string PhoneNumber { get; set; } = default!;
     public string EmailAddress { get; set; } = default!;
-
-
-    public  RoleType Role { get; set; }
+    public string Password { get; set; } = default!;
+    public Guid RoleId { get; set; }
+    public Role Role { get; set; }
+    public  RoleType RoleType { get; set; }
 
     public UserSettings UserSettings { get; set; } = default!;
  }

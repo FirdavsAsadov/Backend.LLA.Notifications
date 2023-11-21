@@ -1,9 +1,10 @@
 ﻿namespace Notifications.Infrastructure.Domain.Enums
 {
-    public enum RoleType
+    public enum RoleType 
     {
         Guest = 0,
         Host = 1,
-        Admin = 2
+        Admin = 2,
+        System = 3
     }
 }
