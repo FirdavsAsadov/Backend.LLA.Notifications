@@ -16,7 +16,11 @@ public class VerificationCodeGeneratorService : IVerificationCodeGeneratorServic
     }
     public ValueTask<string> GenerateCode(VerificationType verificationType, Guid userId)
     {
-        throw new NotImplementedException();
+        var result = _verificationCodeService.Generate(userId);
+        if (result == null)
+            throw new InvalidOperationException("This Code is empty");
+
+        return result;
     }
 
     public (VerificationCode Token, bool IsValid) DecodeToken(string token)

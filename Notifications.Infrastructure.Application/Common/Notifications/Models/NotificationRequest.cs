@@ -2,7 +2,7 @@ using Notifications.Infrastructure.Domain.Enums;
 
 namespace Notifications.Infrastructure.Application.Common.Notifications.Models;
 
-public class NotificationRequest
+public abstract  class NotificationRequest
 {
     public Guid? SenderUserId {get; set; }
     public Guid ReceiverUserId {get; set; }

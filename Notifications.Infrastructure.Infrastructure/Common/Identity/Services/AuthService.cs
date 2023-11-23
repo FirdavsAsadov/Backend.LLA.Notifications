@@ -46,14 +46,17 @@ public class AuthService : IAuthService
             LastName = registrationDetails.LastName,
             EmailAddress = registrationDetails.Email,
             Password = _passwordHasher.HashPassword(registrationDetails.Password),
+            PhoneNumber = registrationDetails.PhoneNumber,
             RoleId = defaultRole.Id
         };
 
+        await _accountService.CreateUserAsync(newUser);
         var smsWelcomeMessage = "Sistemaga xush keilbsiz";
-        
-        var notification = new NotificationRequest()
+
+        var notification = new EmailNotificationRequest()
         {
-            ReceiverUserId = Guid.Empty,
+            SenderUserId = Guid.Empty,
+            ReceiverUserId = newUser.Id,
             TemplateType = NotificationTemplateType.EmailVerificationNotification,
             Type = NotificationType.Sms,
             Variables = new Dictionary<string, ValueTask<string>>()
@@ -61,7 +64,6 @@ public class AuthService : IAuthService
                 { "VerificationCode", new(smsWelcomeMessage) }
             }
         };
-        await _accountService.CreateUserAsync(newUser);
         await _notificationAggregatorService.SendAsync(notification);
 
         return true;
@@ -75,7 +77,7 @@ public class AuthService : IAuthService
 
         var smsWelcomeMessage = "Sistemaga xush keilbsiz";
 
-        var notification = new NotificationRequest()
+        var notification = new EmailNotificationRequest()
         {
             ReceiverUserId = Guid.Empty,
             TemplateType = NotificationTemplateType.EmailVerificationNotification,
