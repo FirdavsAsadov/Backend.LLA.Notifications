@@ -14,9 +14,9 @@ public class AccountService : IAccountService
     private readonly IUserService _userService;
     private readonly NotificationDbContext _notificationDbContext;
 
-    public AccountService(IVerificationCodeGeneratorService verificationCodeGeneratorService, 
+    public AccountService(IVerificationCodeGeneratorService verificationCodeGeneratorService,
         INotificationAggregatorService notificationAggregatorService,
-        IUserService userService, 
+        IUserService userService,
         NotificationDbContext notificationDbContext)
     {
         _verificationCodeGeneratorService = verificationCodeGeneratorService;
@@ -27,15 +27,14 @@ public class AccountService : IAccountService
 
     public async ValueTask<User> CreateUserAsync(User user)
     {
-        await _userService.CreateAsync(user);
+        var createdUser = await _userService.CreateAsync(user);
 
         var emailVerification = _verificationCodeGeneratorService.GenerateCode(
-            VerificationType.EmailAddressVerification, user
-                .Id = Guid.Empty);
+            VerificationType.EmailAddressVerification, user                .Id);
 
-        var notification = new NotificationRequest()
+        var notification = new EmailNotificationRequest()
         {
-            ReceiverUserId = Guid.Empty,
+            ReceiverUserId = createdUser.Id,
             TemplateType = NotificationTemplateType.EmailVerificationNotification,
             Type = NotificationType.Email,
             Variables = new Dictionary<string, ValueTask<string>>()

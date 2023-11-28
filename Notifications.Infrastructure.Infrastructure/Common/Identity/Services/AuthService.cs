@@ -55,7 +55,6 @@ public class AuthService : IAuthService
 
         var notification = new EmailNotificationRequest()
         {
-            SenderUserId = Guid.Empty,
             ReceiverUserId = newUser.Id,
             TemplateType = NotificationTemplateType.EmailVerificationNotification,
             Type = NotificationType.Sms,

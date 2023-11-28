@@ -18,9 +18,9 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async ValueTask<IActionResult> Register([FromBody] RegistrationDetails registrationDetails)
     {
-        var result = await _authService.RegisterAsync(registrationDetails);
+        var results = await _authService.RegisterAsync(registrationDetails);
 
-        return Ok(result);
+        return Ok(results);
     }
 
     [HttpPost("Login")]
